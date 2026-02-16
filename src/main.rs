@@ -6,8 +6,8 @@ struct Article {
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let url = "https://news.ycombinator.com/";
-    let response = reqwest::get(url).await?;
+    let base_url = "https://news.ycombinator.com/";
+    let response = reqwest::get(base_url).await?;
     let body = response.text().await?;
     let document = Html::parse_document(&body);
     let selector = Selector::parse(".titleline > a").unwrap();
